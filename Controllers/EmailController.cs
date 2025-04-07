@@ -18,6 +18,6 @@ public class EmailController :ControllerBase
     public async Task<IActionResult> Send(Message message)
     {
         await this.emailService.SendEmailAsync(message);
-        return Ok(message);
+        return Ok();
     }
 }
