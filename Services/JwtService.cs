@@ -4,7 +4,7 @@ using System.Security.Claims;
 using System.Text;
 using TestForEmail.Models;
 
-namespace JwtAuthDemo.Services;
+namespace TestForEmail.Services;
 
 public class JwtService
 {
