@@ -11,12 +11,12 @@ public class AuthController(UserService userService, JwtService jwtService) : Co
 {
 
     [HttpPost("signup")]
-    public IActionResult SignUp([FromBody] User user)
+    public async Task<IActionResult> SignUp([FromBody] User user)
     {
         if (userService.GetByEmail(user.Email) is not null)
             return BadRequest("Email already exists");
 
-        userService.Register(user);
+        await userService.CreateUserAsync(user);
         return Ok("Registered successfully");
     }
 
