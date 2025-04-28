@@ -7,11 +7,9 @@ namespace TestForEmail.Services;
 public class UserService
 {
     private readonly AppDbContext appDbContext;
-    private readonly DbSet<User> dbSet;
-    public UserService(AppDbContext appDbContext, DbSet<User> dbSet)
+    public UserService(AppDbContext appDbContext)
     {
         this.appDbContext = appDbContext;
-        this.dbSet = dbSet;
     }
     private static List<User> _users = new();
 
@@ -22,11 +20,11 @@ public class UserService
     }
 
     public User GetByEmail(string email) =>
-        _users.FirstOrDefault(u => u.Email == email);
+        appDbContext.Users.FirstOrDefault(u => u.Email == email);
 
     public async Task<User> CreateUserAsync(User user)
     {
-        var result = await this.dbSet.AddAsync(user);
+        var result = await this.appDbContext.Users.AddAsync(user);
         appDbContext.SaveChanges();
         return result.Entity;
     }

@@ -1,9 +1,10 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using TestForEmail.Attributes;
+using TestForEmail.Commons;
 
 namespace TestForEmail.Models;
 
-public class Message
+public class Message : Auditable
 {
     [Required]
     public string Subject { get; set; }
